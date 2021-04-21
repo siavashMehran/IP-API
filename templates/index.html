@@ -1,0 +1,81 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        body{
+            background-color: rgb(9, 7, 36);
+            color: aliceblue;
+        }
+
+        .flagimg{
+            width: 300px;
+            height: 200px;
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+
+    <br>
+
+    <h1>
+        your IP : 
+        <br>
+        {{data.ip}}
+    </h1>
+
+    <br>
+
+    <div class="wlcomediv">
+
+        {%if flag %}
+            <img class="flagimg" src="{{flag}}" alt="">
+        {%endif%}
+
+        <h1>{{data.city}}, {{data.country_name}}</h1>
+
+    </div>
+    
+    <div class="regiondetails">
+
+        <h2>
+            [latitude: "{{data.latitude}}" , longitude : " {{data.longitude}}  "
+        </h2>
+
+        <h2>
+            {%if lang%}
+                <h4>
+                    {{lang.name}}, {{lang.native}} [{{lang.code}}]
+                </h4>
+            {%endif%}
+        </h2>
+        
+        <h4>calling code : [+{{data.location.calling_code}}]</h4>
+        <h4>example : +{{data.location.calling_code}} 987 654 3210</h4>
+
+    </div>
+        
+
+    <br><br>
+    
+
+
+
+<script>
+    var j = JSON.parse('{{json | escapejs}}')
+    
+</script>
+</body>
+</html>
